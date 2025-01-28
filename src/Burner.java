@@ -14,9 +14,17 @@ public class Burner {
 	
 	public enum Temperature{BLAZING, HOT, COLD, WARM};
 	
+	public void plusButton() {
+		
+	}
 	
+	public void minusButton() {
+		
+	}
 	
-	
+	public void updateTemperature() {
+		
+	}
 	
 	
 }
