@@ -8,7 +8,7 @@ public class Burner {
 	
 	private Temperature myTemperature;
 	
-	Temperature getTemperature() {
+	public Temperature getTemperature() {
 		return myTemperature;
 	}
 	
@@ -64,7 +64,7 @@ public class Burner {
 	public void updateTemperature() {
 		
 		if(timer == 0) {
-			this.timer = TIME_DURATION;
+			
 			switch(mySetting) {
 				case HIGH:
 					if(myTemperature.ordinal() < Temperature.BLAZING.ordinal()) {
@@ -86,7 +86,14 @@ public class Burner {
 						this.myTemperature = Burner.Temperature.values()[ord]; 
 					}
 					break;		
-									
+							
+				case OFF:
+					if(myTemperature.ordinal() > Temperature.COLD.ordinal()) {
+						int ord = myTemperature.ordinal() - 1;
+						this.myTemperature = Burner.Temperature.values()[ord]; 
+						this.timer = TIME_DURATION;
+						break;
+					}
 				default:
 					break;
 			
@@ -101,22 +108,22 @@ public class Burner {
 	
 	public void display() {
 		
-		switch(mySetting) {
-			case OFF:
+		switch(myTemperature) {
+			case COLD:
 				System.out.println("[" + mySetting.toString() + "].....cooool");
 				break;
 				
-			case LOW:
+			case WARM:
 				System.out.println("[" + mySetting.toString() + "]....warm");
 				break;
 				
-			case MEDIUM:
+			case HOT:
 				System.out.println("[" + mySetting.toString() + "].... CAREFUL");
 				break;
 				
-				case HIGH:
+			case BLAZING:
 				 System.out.println("[" + mySetting.toString() + "].... VERY HOT! DON'T TOUCH");
-					break;
+				 break;
 				
 			default:
 				break;
