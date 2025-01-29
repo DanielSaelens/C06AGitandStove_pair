@@ -12,7 +12,7 @@ public class Burner {
 		return myTemperature;
 	}
 	
-	public enum Temperature{COLD, WARM, HOT, BLAZING;};
+	public enum Temperature{COLD, WARM, HOT, BLAZING};
 	
 	public Burner(){
 		super();
@@ -64,34 +64,32 @@ public class Burner {
 	public void updateTemperature() {
 		
 		if(timer == 0) {
-			
+			this.timer = TIME_DURATION;
+						
 			switch(mySetting) {
 				case HIGH:
-					if(myTemperature.ordinal() < Temperature.BLAZING.ordinal()) {
-						int ord = 1 + myTemperature.ordinal();
-						this.myTemperature = Burner.Temperature.values()[ord]; 
+					if(myTemperature != Temperature.BLAZING) {
+						this.myTemperature = Burner.Temperature.BLAZING; 
 					}
 					break;
 					
 				case MEDIUM:
-					if(myTemperature.ordinal() < Temperature.HOT.ordinal()) {
-						int ord = 1 + myTemperature.ordinal();
-						this.myTemperature = Burner.Temperature.values()[ord];
+					if(myTemperature != Temperature.HOT) {
+						this.myTemperature = Burner.Temperature.HOT;
 					}
+
 					break;
 					
 				case LOW:
-					if(myTemperature.ordinal() < Temperature.WARM.ordinal()) {
-						int ord = 1 + myTemperature.ordinal();
-						this.myTemperature = Burner.Temperature.values()[ord]; 
+					if(myTemperature != Temperature.WARM) {
+						this.myTemperature = Burner.Temperature.WARM;
 					}
 					break;		
 							
 				case OFF:
-					if(myTemperature.ordinal() > Temperature.COLD.ordinal()) {
-						int ord = myTemperature.ordinal() - 1;
-						this.myTemperature = Burner.Temperature.values()[ord]; 
-						this.timer = TIME_DURATION;
+					if(myTemperature != Temperature.COLD) {
+						this.myTemperature = Burner.Temperature.COLD;
+
 						break;
 					}
 				default:
