@@ -15,9 +15,4 @@ public enum Settings {
 		
 	}
 
-	
-	
-
-
-
 }
